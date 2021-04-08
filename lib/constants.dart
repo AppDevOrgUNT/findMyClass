@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 //Colors used throughout the app
 const kGreen = Color(0xff00853E);
+const kSageGreen = Color(0xff98BA9A);
 const kLightGreen = Color(0xffaac6a9);
 const kOffWhite = Color(0xffF9F7F4);
 

@@ -31,129 +31,194 @@ class _HomePageState extends State<HomePage> {
             flex: 2,
             child: Stack(
               children: <Widget>[
+                //Map of the building
                 Container(
                   padding: EdgeInsets.only(
-                    // left: 10,
-                    // right: 10,
-                    //bottom: 40,
+                    left: 20,
+                    right: 20,
+                    bottom: 40,
                     top: 80,
                   ),
                   child: isSelected == FloorOptions.floor1
                       ? Image.asset("images/1F.png")
                       : Image.asset("images/2F.png"),
                 ),
+
+                //Zoom buttons
+                Positioned(
+                  right: 20,
+                  top: 30,
+                  child: Column(
+                    children: <Widget>[
+                      GestureDetector(
+                        onTap: () {
+                          //TODO: Zoom in
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: kSageGreen,
+                            borderRadius: BorderRadius.circular(30),
+                            boxShadow: [
+                              BoxShadow(
+                                offset: Offset(1, 2),
+                                blurRadius: 3,
+                                color: Colors.grey,
+                              ),
+                            ],
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(5.0),
+                            child: Icon(
+                              Icons.add,
+                              color: kGreen,
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          //TODO: Zoom out
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: kSageGreen,
+                            borderRadius: BorderRadius.circular(30),
+                            boxShadow: [
+                              BoxShadow(
+                                offset: Offset(1, 2),
+                                blurRadius: 3,
+                                color: Colors.grey,
+                              ),
+                            ],
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(5.0),
+                            child: Icon(
+                              Icons.remove,
+                              color: kGreen,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
               ],
             ),
           ),
 
           //Floor and icon buttons
-          Expanded(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: <Widget>[
-                //Row of Floor text
-                Row(
-                  children: <Widget>[
-                    GestureDetector(
-                      onTap: () {
-                        //TODO: Change floors
-                        setState(() {
-                          isSelected = FloorOptions.floor1;
-                        });
-                      },
-                      child: Container(
-                        child: Text(
-                          "Floor 1",
-                          style: TextStyle(
-                            fontFamily: "Montserrat",
-                            fontWeight: FontWeight.bold,
-                            fontSize: 22,
-                            color: isSelected == FloorOptions.floor1
-                                ? kGreen
-                                : kLightGreen,
-                          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: <Widget>[
+              //Row of Floor text
+              Row(
+                children: <Widget>[
+                  GestureDetector(
+                    onTap: () {
+                      //TODO: Change to floor 1
+                      setState(() {
+                        isSelected = FloorOptions.floor1;
+                      });
+                    },
+                    child: Container(
+                      child: Text(
+                        "Floor 1",
+                        style: TextStyle(
+                          fontFamily: "Montserrat",
+                          fontWeight: FontWeight.bold,
+                          fontSize: 22,
+                          color: isSelected == FloorOptions.floor1
+                              ? kGreen
+                              : kLightGreen,
                         ),
                       ),
                     ),
-                    SizedBox(
-                      width: 15,
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        //TODO: Change floors
+                  ),
+                  SizedBox(
+                    width: 15,
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      //TODO: Change to floor 2
 
-                        setState(() {
-                          isSelected = FloorOptions.floor2;
-                        });
-                      },
-                      child: Container(
-                        child: Text(
-                          "Floor 2",
-                          style: TextStyle(
-                            fontFamily: "Montserrat",
-                            fontWeight: FontWeight.bold,
-                            fontSize: 22,
-                            color: isSelected == FloorOptions.floor2
-                                ? kGreen
-                                : kLightGreen,
-                          ),
+                      setState(() {
+                        isSelected = FloorOptions.floor2;
+                      });
+                    },
+                    child: Container(
+                      child: Text(
+                        "Floor 2",
+                        style: TextStyle(
+                          fontFamily: "Montserrat",
+                          fontWeight: FontWeight.bold,
+                          fontSize: 22,
+                          color: isSelected == FloorOptions.floor2
+                              ? kGreen
+                              : kLightGreen,
                         ),
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
+              ),
 
-                //Row of Icon Buttons
-                Row(
-                  children: <Widget>[
-                    Container(
-                      decoration: BoxDecoration(
-                        color: kGreen,
-                        borderRadius: BorderRadius.circular(30),
-                        boxShadow: [
-                          BoxShadow(
-                            offset: Offset(1, 2),
-                            blurRadius: 3,
-                            color: Colors.grey,
-                          ),
-                        ],
-                      ),
-                      child: IconButton(
-                        color: kOffWhite,
-                        icon: Icon(Icons.house),
-                        onPressed: () {
-                          //TODO: Restart from the beginning of the app
-                        },
-                      ),
+              //Row of Icon Buttons
+              Row(
+                children: <Widget>[
+                  Container(
+                    decoration: BoxDecoration(
+                      color: kGreen,
+                      borderRadius: BorderRadius.circular(30),
+                      boxShadow: [
+                        BoxShadow(
+                          offset: Offset(1, 2),
+                          blurRadius: 3,
+                          color: Colors.grey,
+                        ),
+                      ],
                     ),
-                    SizedBox(
-                      width: 15,
+                    child: IconButton(
+                      color: kOffWhite,
+                      icon: Icon(Icons.house),
+                      onPressed: () {
+                        //TODO: Restart from the beginning of the app
+                      },
                     ),
-                    Container(
-                      decoration: BoxDecoration(
-                        color: kGreen,
-                        borderRadius: BorderRadius.circular(30),
-                        boxShadow: [
-                          BoxShadow(
-                            offset: Offset(1, 2),
-                            blurRadius: 3,
-                            color: Colors.grey,
-                          ),
-                        ],
-                      ),
-                      child: IconButton(
-                        color: kOffWhite,
-                        icon: Icon(Icons.star),
-                        onPressed: () {
-                          //TODO: Shows favorites of the app
-                        },
-                      ),
+                  ),
+                  SizedBox(
+                    width: 15,
+                  ),
+                  Container(
+                    decoration: BoxDecoration(
+                      color: kGreen,
+                      borderRadius: BorderRadius.circular(30),
+                      boxShadow: [
+                        BoxShadow(
+                          offset: Offset(1, 2),
+                          blurRadius: 3,
+                          color: Colors.grey,
+                        ),
+                      ],
                     ),
-                  ],
-                ),
-              ],
-            ),
+                    child: IconButton(
+                      color: kOffWhite,
+                      icon: Icon(Icons.star),
+                      onPressed: () {
+                        //TODO: Shows favorites of the app
+                      },
+                    ),
+                  ),
+                ],
+              ),
+            ],
           ),
+
+          //Search Bar
+          Container(),
         ],
       ),
     );
