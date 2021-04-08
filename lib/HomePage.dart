@@ -21,7 +21,26 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    List<String> _tempListOfRooms;
+
+    final _scaffoldKey = GlobalKey<ScaffoldState>();
+    final TextEditingController searchBarController = TextEditingController();
+
+    //Dummy data for the search bar
+    List<String> _listOfRooms = <String>[
+      "B109",
+      "B110",
+      "B111",
+      "B112",
+      "B135",
+      "B139",
+      "M101",
+      "M130",
+      "D150",
+    ];
+
     return Scaffold(
+      key: _scaffoldKey,
       body: Column(
         children: <Widget>[
           CustomAppBar(),
@@ -218,7 +237,44 @@ class _HomePageState extends State<HomePage> {
           ),
 
           //Search Bar
-          Container(),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 40.0),
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(30),
+                boxShadow: [
+                  BoxShadow(
+                    offset: Offset(1, 2),
+                    blurRadius: 3,
+                    color: Colors.grey,
+                  ),
+                ],
+              ),
+              padding: EdgeInsets.symmetric(vertical: 5, horizontal: 20),
+              margin: EdgeInsets.symmetric(vertical: 20, horizontal: 30),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Container(
+                    width: 200,
+                    child: TextField(
+                      onTap: () {
+                        //TODO: show list of rooms
+                      },
+                      decoration: InputDecoration(
+                        hintStyle:
+                            TextStyle(fontSize: 16.0, color: Colors.grey),
+                        border: InputBorder.none,
+                        hintText: "Find your class",
+                      ),
+                    ),
+                  ),
+                  Icon(Icons.search),
+                ],
+              ),
+            ),
+          ),
         ],
       ),
     );

@@ -33,6 +33,9 @@ class CustomAppBar extends StatelessWidget {
                   Icons.help_outline,
                   color: kOffWhite,
                 ),
+                onPressed: () {
+                  //TODO: add help information
+                },
               ),
             ],
           ),
