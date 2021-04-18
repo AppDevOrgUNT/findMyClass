@@ -1,5 +1,6 @@
 import 'package:ado_project_2/CustomWidgets/CustomAppBar.dart';
 import 'package:flutter/material.dart';
+import 'package:photo_view/photo_view.dart';
 import 'constants.dart';
 
 /*
@@ -43,24 +44,35 @@ class _HomePageState extends State<HomePage> {
       key: _scaffoldKey,
       body: Column(
         children: <Widget>[
-          CustomAppBar(),
-
           //Map and zoom buttons
           Expanded(
-            flex: 2,
             child: Stack(
               children: <Widget>[
                 //Map of the building
-                Container(
-                  padding: EdgeInsets.only(
-                    left: 20,
-                    right: 20,
-                    bottom: 40,
-                    top: 80,
+                SizedBox.expand(
+                  child: Container(
+                    padding: EdgeInsets.only(
+                      // left: 20,
+                      // right: 20,
+                      // bottom: 40,
+                      top: 130, //to leave space for the appbar
+                    ),
+                    child: InteractiveViewer(
+                      minScale: 0.5,
+                      maxScale: 3,
+                      child: Stack(
+                        children: <Widget>[
+                          // YOUR MAP as an image
+                          isSelected == FloorOptions.floor1
+                              ? Image.asset("images/1F.png")
+                              : Image.asset("images/2F.png"),
+
+                          //TODO: Path finding image will go here
+                          //CanvasWidget()
+                        ],
+                      ),
+                    ),
                   ),
-                  child: isSelected == FloorOptions.floor1
-                      ? Image.asset("images/1F.png")
-                      : Image.asset("images/2F.png"),
                 ),
 
                 //Zoom buttons
@@ -72,6 +84,7 @@ class _HomePageState extends State<HomePage> {
                       GestureDetector(
                         onTap: () {
                           //TODO: Zoom in
+                          print("Apply zoom in functionality");
                         },
                         child: Container(
                           decoration: BoxDecoration(
@@ -100,6 +113,7 @@ class _HomePageState extends State<HomePage> {
                       GestureDetector(
                         onTap: () {
                           //TODO: Zoom out
+                          print("Apply zoom out functionality");
                         },
                         child: Container(
                           decoration: BoxDecoration(
@@ -125,10 +139,38 @@ class _HomePageState extends State<HomePage> {
                     ],
                   ),
                 ),
+                CustomAppBar(),
+                Positioned(
+                  bottom: 0,
+                  child: customSearchBar(),
+                ),
               ],
             ),
           ),
+        ],
+      ),
+    );
+  }
 
+  Widget customSearchBar() {
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      padding: EdgeInsets.only(
+        top: 10.0,
+      ),
+      decoration: BoxDecoration(
+        color: kOffWhite,
+        borderRadius: BorderRadius.circular(40),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey,
+            offset: Offset(2, 3),
+            blurRadius: 6,
+          ),
+        ],
+      ),
+      child: Column(
+        children: <Widget>[
           //Floor and icon buttons
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -205,6 +247,7 @@ class _HomePageState extends State<HomePage> {
                       icon: Icon(Icons.house),
                       onPressed: () {
                         //TODO: Restart from the beginning of the app
+                        print("Restart from the beginning");
                       },
                     ),
                   ),
@@ -228,6 +271,7 @@ class _HomePageState extends State<HomePage> {
                       icon: Icon(Icons.star),
                       onPressed: () {
                         //TODO: Shows favorites of the app
+                        print("Show favorites/saved rooms");
                       },
                     ),
                   ),
@@ -261,6 +305,7 @@ class _HomePageState extends State<HomePage> {
                     child: TextField(
                       onTap: () {
                         //TODO: show list of rooms
+                        print("Pop up a list of rooms");
                       },
                       decoration: InputDecoration(
                         hintStyle:
@@ -270,7 +315,12 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ),
                   ),
-                  Icon(Icons.search),
+                  IconButton(
+                    icon: Icon(Icons.search),
+                    onPressed: () {
+                      //TODO: function to search onSubmitted()
+                    },
+                  ),
                 ],
               ),
             ),

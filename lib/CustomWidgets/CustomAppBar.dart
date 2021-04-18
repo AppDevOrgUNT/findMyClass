@@ -35,6 +35,7 @@ class CustomAppBar extends StatelessWidget {
                 ),
                 onPressed: () {
                   //TODO: add help information
+                  print("Display info");
                 },
               ),
             ],
