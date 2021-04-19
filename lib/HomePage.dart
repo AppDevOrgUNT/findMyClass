@@ -8,6 +8,12 @@ import 'constants.dart';
 Resource for bottom search bar: https://www.shauryalabs.com/blog/flutter-tutorial-2/
  */
 
+/*
+This file has hundreds of lines of code because in order to create the user interface of the app,
+I need Widgets that are dependent on the variables of this file. These widgets are separated into its
+own function within the class, so that it will still be able to access the class variables.
+ */
+
 enum FloorOptions {
   floor1,
   floor2,
@@ -53,12 +59,10 @@ class _HomePageState extends State<HomePage> {
                 SizedBox.expand(
                   child: Container(
                     padding: EdgeInsets.only(
-                      // left: 20,
-                      // right: 20,
-                      // bottom: 40,
                       top: 130, //to leave space for the appbar
                     ),
                     child: InteractiveViewer(
+                      //Enables the image to scale
                       minScale: 0.5,
                       maxScale: 3,
                       child: Stack(
@@ -76,10 +80,13 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
 
+                //Custom app bar
+                CustomAppBar(),
+
                 //Zoom buttons
                 Positioned(
                   right: 20,
-                  top: 30,
+                  top: 150,
                   child: Column(
                     children: <Widget>[
                       GestureDetector(
@@ -140,11 +147,11 @@ class _HomePageState extends State<HomePage> {
                     ],
                   ),
                 ),
-                CustomAppBar(),
+
+                //Custom search bar
                 Positioned(
                   bottom: 0,
                   child: customSearchBar(),
-                  //child: scrollableSearchBar(context),
                 ),
               ],
             ),
